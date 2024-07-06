@@ -1,3 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+body {
+  min-height: 100vh;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: white;
+  padding: 0.5em 0.1em;
+  border-radius: 12px;
+}
+
+.dropdown-item {
+  display: flex;
+  margin-top: 0.4em;
+}
+.dropdown-item img {
+  margin-right: 0.3em;
+}
+.dropdown-item h3 {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1.4rem;
+}
+
+.dropdown-title {
+  font-size: 1.4rem;
+}
 
 /*# sourceMappingURL=main.css.map */
