@@ -3,12 +3,13 @@ import CharacterDropdown from "./character-dropdown";
 import bg1 from "../assets/bg2.jpg";
 import Rectangle from "./rectangle";
 import { useImmer } from "use-immer";
+import { dropdownContext } from "../utils/character-dropdown-context";
 
 function GameScene({}) {
   const [open, setOpen] = useState(false);
   const [dimension, setDimension] = useImmer({ x: 0, y: 0 });
 
-  function imageClick(e) {
+  async function imageClick(e) {
     setDimension((draft) => {
       draft.x = e.pageX;
       draft.y = e.pageY;
@@ -18,12 +19,10 @@ function GameScene({}) {
 
   return (
     <div>
-      <CharacterDropdown
-        x={dimension.x}
-        y={dimension.y}
-        isOpen={open}
-      ></CharacterDropdown>
-      {open && <Rectangle x={dimension.x} y={dimension.y}></Rectangle>}
+      <dropdownContext.Provider value={{ x: dimension.x, y: dimension.y }}>
+        <CharacterDropdown isOpen={open} />
+      </dropdownContext.Provider>
+      {open && <Rectangle x={dimension.x} y={dimension.y} />}
       <img src={bg1} onClick={imageClick} />
     </div>
   );

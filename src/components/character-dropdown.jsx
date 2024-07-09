@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import leonardo from "../assets/ninge turtle.png";
+import CharacterDropdownItem from "./character-dropdown-item";
+import { dropdownContext } from "../utils/character-dropdown-context";
 // display: open ? "block" : "none",
+//
+const dropdownItems = [
+  {
+    name: "leonardo",
+    imgSrc: leonardo,
+  },
+];
 
-function CharacterDropdown({ isOpen, x = 0, y = 0 }) {
+function CharacterDropdown({ isOpen }) {
   const animate = isOpen ? "slide" : "";
+  const { x, y } = useContext(dropdownContext);
 
   return (
     <div
@@ -12,18 +22,15 @@ function CharacterDropdown({ isOpen, x = 0, y = 0 }) {
       style={{ display: isOpen ? "block" : "none", top: y + 10, left: x + 15 }}
     >
       <h1 className="dropdown-title">Select Character</h1>
-      <div className="dropdown-item">
-        <img width={"64px"} height={"64px"} src={leonardo} />
-        <h3>Leonardo</h3>
-      </div>
-      <div className="dropdown-item">
-        <img width={"64px"} height={"64px"} src={leonardo} />
-        <h3>Leonardo</h3>
-      </div>
-      <div className="dropdown-item">
-        <img width={"64px"} height={"64px"} src={leonardo} />
-        <h3>Leonardo</h3>
-      </div>
+      {dropdownItems?.map((item) => {
+        return (
+          <CharacterDropdownItem
+            name={item.name}
+            imgSrc={item.imgSrc}
+            key={item.name}
+          />
+        );
+      })}
     </div>
   );
 }
