@@ -23,15 +23,28 @@ video {
 }
 
 .dropdown {
+  visibility: hidden;
   position: absolute;
   background-color: white;
-  padding: 0.5em 0.1em;
-  border-radius: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 1s;
+}
+.dropdown h1 {
+  padding: 0.5em;
+}
+
+.dropdown.slide {
+  visibility: visible;
+  max-height: 400px;
 }
 
 .dropdown-item {
+  padding: 0.3em 0.4em;
   display: flex;
   margin-top: 0.4em;
+  transition: background-color 0.5s;
 }
 .dropdown-item img {
   margin-right: 0.3em;
@@ -41,9 +54,21 @@ video {
   margin-bottom: auto;
   font-size: 1.4rem;
 }
+.dropdown-item:hover {
+  background-color: green;
+}
 
 .dropdown-title {
   font-size: 1.4rem;
+}
+
+.rect {
+  height: 62px;
+  width: 32px;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  position: absolute;
 }
 
 /*# sourceMappingURL=main.css.map */
