@@ -40,10 +40,16 @@ video {
   max-height: 400px;
 }
 
+.checkmark {
+  filter: invert(17%) sepia(65%) saturate(6356%) hue-rotate(356deg)
+    brightness(94%) contrast(119%);
+}
+
 .dropdown-item {
   padding: 0.3em 0.4em;
   display: flex;
   margin-top: 0.4em;
+
   img {
     margin-right: 0.3em;
   }
