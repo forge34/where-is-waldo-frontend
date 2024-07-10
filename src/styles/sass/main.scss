@@ -43,6 +43,8 @@ video {
 .checkmark {
   filter: invert(17%) sepia(65%) saturate(6356%) hue-rotate(356deg)
     brightness(94%) contrast(119%);
+
+  translate: -50% -60%;
 }
 
 .dropdown-item {
