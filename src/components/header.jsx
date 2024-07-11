@@ -3,11 +3,10 @@ import React from "react";
 import styles from "../styles/css/header.module.css";
 import Timer from "./timer";
 
-function Header({ }) {
-  
+function Header({}) {
   return (
     <div className={styles.container}>
-      <p className={styles.title}>Where is waldo</p>
+      <p className={styles.title}>Hidden Heroes: Beyond the Veil</p>
       <Timer start={true}></Timer>
       <p className={styles.leaderboard}>Leaderboard</p>
     </div>

@@ -1,10 +1,8 @@
 const adjustTimer = (seconds) => {
   let minutes = Math.floor(seconds / 60);
-  console.log(minutes);
-  let hours = (seconds / 3600).toFixed(0);
   let sec = seconds % 60;
 
-  return `${hours}:${minutes}:${sec}`;
+  return String(minutes).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
 };
 
 export default adjustTimer;
