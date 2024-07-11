@@ -1,16 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import styles from "../styles/css/header.module.css";
+import Timer from "./timer";
 
-function Header({}) {
+function Header({ }) {
+  
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Where is waldo</h2>
-      <h2 className={styles.leaderboard}>Leaderboard</h2>
+      <p className={styles.title}>Where is waldo</p>
+      <Timer start={true}></Timer>
+      <p className={styles.leaderboard}>Leaderboard</p>
     </div>
   );
 }
 
-Header.propTypes = {};
+// Header.propTypes = { startGame: PropTypes.bool };
 
 export default Header;
