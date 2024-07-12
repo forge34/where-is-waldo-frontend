@@ -10,8 +10,6 @@
   font: inherit;
 }
 
-
-
 body {
   min-height: 100vh;
 }
@@ -22,6 +20,10 @@ svg,
 video {
   display: block;
   max-width: 100%;
+}
+
+form {
+  all: unset;
 }
 
 .dropdown {
@@ -75,4 +77,34 @@ video {
   font-size: 1.4rem;
 }
 
+#win-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
+  font-size: 1.8em;
+  pointer-events: none;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  & > * {
+    margin: 0.25em 0;
+  }
+
+  input {
+    border-radius: 10px;
+  }
+
+  button {
+    background-color: white;
+    padding: 0.4em 0.7em;
+    font-size: 0.7em;
+    border-radius: 12px;
+    align-self: center;
+  }
+}

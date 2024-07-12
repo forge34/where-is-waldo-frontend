@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CharacterDropdown from "./character-dropdown";
 import bg1 from "../assets/bg2.jpg";
 import { useImmer } from "use-immer";
 import { dropdownContext } from "../utils/character-dropdown-context";
-import checkmark from "../assets/check-mark.svg";
+import PropTypes from "prop-types";
+import Marker from "./marker";
+import WinDialog from "./win-dialog";
 
-function GameScene({}) {
+function GameScene({ userTime }) {
   const [open, setOpen] = useState(false);
   const [dimension, setDimension] = useImmer({ x: 0, y: 0 });
   const [foundCharacters, setFoundCharacters] = useImmer([]);
+  const [win, setWin] = useState(false);
+
+  useEffect(() => {
+    foundCharacters.length >= 5 ? setWin(true) : "";
+  }, [foundCharacters]);
 
   async function imageClick(e) {
     setDimension((draft) => {
@@ -22,18 +29,13 @@ function GameScene({}) {
     <div>
       {foundCharacters.map((character) => {
         return (
-          <img
+          <Marker
+            x={character.x}
+            y={character.y}
+            key={character.name}
             width={32}
             height={32}
-            key={character.name}
-            src={checkmark}
-            className="checkmark"
-            style={{
-              position: "absolute",
-              top: character.y,
-              left: character.x,
-            }}
-          />
+          ></Marker>
         );
       })}
 
@@ -47,11 +49,15 @@ function GameScene({}) {
       >
         <CharacterDropdown isOpen={open} />
       </dropdownContext.Provider>
+      {win && <WinDialog></WinDialog>}
+
       <img src={bg1} onClick={imageClick} />
     </div>
   );
 }
 
-GameScene.propTypes = {};
+GameScene.propTypes = {
+  userTime: PropTypes.number,
+};
 
 export default GameScene;
