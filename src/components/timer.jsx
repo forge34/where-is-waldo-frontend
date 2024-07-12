@@ -2,18 +2,21 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import adjustTimer from "../utils/adjust-timer";
 
-function Timer({ }) {
+function Timer({ stopTimer = false, setExternalTime }) {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(time + 1);
-    }, 1000);
+    if (!stopTimer) {
+      const interval = setInterval(() => {
+        setTime(time + 1);
+      }, 1000);
+      setExternalTime(time);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [time]);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [time, stopTimer,setExternalTime]);
   return (
     <div>
       <p>{adjustTimer(time)}</p>
@@ -22,7 +25,8 @@ function Timer({ }) {
 }
 
 Timer.propTypes = {
-  start: PropTypes.bool,
+  stopTimer: PropTypes.bool,
+  setExternalTime: PropTypes.func,
 };
 
 export default Timer;

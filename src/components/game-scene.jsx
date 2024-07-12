@@ -7,14 +7,18 @@ import PropTypes from "prop-types";
 import Marker from "./marker";
 import WinDialog from "./win-dialog";
 
-function GameScene({ userTime }) {
+function GameScene({ userTime, setStopTimer }) {
   const [open, setOpen] = useState(false);
   const [dimension, setDimension] = useImmer({ x: 0, y: 0 });
   const [foundCharacters, setFoundCharacters] = useImmer([]);
   const [win, setWin] = useState(false);
 
   useEffect(() => {
-    foundCharacters.length >= 5 ? setWin(true) : "";
+    if (foundCharacters.length >= 5) {
+      setWin(true);
+      console.log(userTime);
+      setStopTimer(true);
+    }
   }, [foundCharacters]);
 
   async function imageClick(e) {
@@ -58,6 +62,7 @@ function GameScene({ userTime }) {
 
 GameScene.propTypes = {
   userTime: PropTypes.number,
+  setStopTimer: PropTypes.func,
 };
 
 export default GameScene;

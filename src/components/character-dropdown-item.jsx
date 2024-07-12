@@ -7,7 +7,7 @@ function CharacterDropDownItem({ name, imgSrc }) {
 
   async function handleClick(e) {
     e.stopPropagation();
-    let res = await fetch("http://localhost:3000/check", {
+    let res = await fetch(`${import.meta.env.VITE_API_URL}/check`, {
       method: "POST",
       body: JSON.stringify({
         name: name,

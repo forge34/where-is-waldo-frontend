@@ -1,18 +1,20 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import styles from "../styles/css/header.module.css";
-import Timer from "./timer";
 
-function Header({}) {
+function Header({ children }) {
   return (
     <div className={styles.container}>
       <p className={styles.title}>Hidden Heroes: Beyond the Veil</p>
-      <Timer start={true}></Timer>
+      {children}
       <p className={styles.leaderboard}>Leaderboard</p>
     </div>
   );
 }
 
-// Header.propTypes = { startGame: PropTypes.bool };
+Header.propTypes = {
+  children: PropTypes.element,
+  startGame: PropTypes.bool,
+};
 
 export default Header;

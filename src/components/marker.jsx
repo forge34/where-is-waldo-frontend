@@ -1,19 +1,24 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import checkmark from "../assets/check-mark.svg";
 
-function Marker() {
+function Marker({ x, y, width, height }) {
   return (
-    <div>
-      <img
-        src={checkmark}
-        className="checkmark"
-        style={{ position: "absolute", top: "100px", left: "100px" }}
-      />
-    </div>
+    <img
+      width={width}
+      height={height}
+      src={checkmark}
+      className="checkmark"
+      style={{ position: "absolute", top: y, left: x }}
+    />
   );
 }
 
-Marker.propTypes = {};
+Marker.propTypes = {
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
 
 export default Marker;
