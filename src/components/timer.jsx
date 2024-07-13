@@ -16,7 +16,8 @@ function Timer({ stopTimer = false, setExternalTime }) {
         clearInterval(interval);
       };
     }
-  }, [time, stopTimer,setExternalTime]);
+  }, [time, stopTimer, setExternalTime]);
+
   return (
     <div>
       <p>{adjustTimer(time)}</p>

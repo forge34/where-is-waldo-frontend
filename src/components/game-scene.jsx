@@ -6,12 +6,14 @@ import { dropdownContext } from "../utils/character-dropdown-context";
 import PropTypes from "prop-types";
 import Marker from "./marker";
 import WinDialog from "./win-dialog";
+import { useOutletContext } from "react-router-dom";
 
-function GameScene({ userTime, setStopTimer }) {
+function GameScene() {
   const [open, setOpen] = useState(false);
   const [dimension, setDimension] = useImmer({ x: 0, y: 0 });
   const [foundCharacters, setFoundCharacters] = useImmer([]);
   const [win, setWin] = useState(false);
+  const [userTime, setStopTimer] = useOutletContext();
 
   useEffect(() => {
     if (foundCharacters.length >= 5) {
@@ -19,7 +21,7 @@ function GameScene({ userTime, setStopTimer }) {
       console.log(userTime);
       setStopTimer(true);
     }
-  }, [foundCharacters]);
+  }, [foundCharacters, setStopTimer, userTime]);
 
   async function imageClick(e) {
     setDimension((draft) => {
