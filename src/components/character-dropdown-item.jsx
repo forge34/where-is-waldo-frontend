@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { dropdownContext } from "../utils/character-dropdown-context";
 
 function CharacterDropDownItem({ name, imgSrc }) {
-  const { x, y, setFoundCharacters } = useContext(dropdownContext);
+  const { x, y, setFound, onFoundChange } = useContext(dropdownContext);
 
   async function handleClick(e) {
     e.stopPropagation();
@@ -22,7 +22,8 @@ function CharacterDropDownItem({ name, imgSrc }) {
     res = await res.json();
 
     if (res.found) {
-      setFoundCharacters((draft) => {
+      onFoundChange(true);
+      setFound((draft) => {
         if (!draft.includes(name)) {
           draft.push({
             x: res.x,
@@ -31,16 +32,20 @@ function CharacterDropDownItem({ name, imgSrc }) {
           });
         }
       });
+    } else if (!res.found) {
+      onFoundChange(false);
     }
 
     console.log(res);
   }
 
   return (
-    <div className="dropdown-item" onClick={handleClick}>
-      <img width={"48px"} height={"48px"} src={imgSrc} />
-      <h3>{name}</h3>
-    </div>
+    <>
+      <div className="dropdown-item" onClick={handleClick}>
+        <img width={"48px"} height={"48px"} src={imgSrc} />
+        <h3>{name}</h3>
+      </div>
+    </>
   );
 }
 

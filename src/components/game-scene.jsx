@@ -7,21 +7,39 @@ import PropTypes from "prop-types";
 import Marker from "./marker";
 import WinDialog from "./win-dialog";
 import { useOutletContext } from "react-router-dom";
+import Notification from "./notification";
 
 function GameScene() {
   const [open, setOpen] = useState(false);
   const [dimension, setDimension] = useImmer({ x: 0, y: 0 });
-  const [foundCharacters, setFoundCharacters] = useImmer([]);
+  const [Found, setFound] = useImmer([]);
   const [win, setWin] = useState(false);
-  const [userTime, setStopTimer] = useOutletContext();
+  const [setStopTimer] = useOutletContext();
+  const [notficationSettings, setNotificationSettings] = useImmer({
+    status: "inital",
+    message: "",
+    show: false,
+  });
 
-  useEffect(() => {
-    if (foundCharacters.length >= 5) {
+  function onFoundChange(status) {
+    if (Found.length >= 5) {
       setWin(true);
-      console.log(userTime);
       setStopTimer(true);
     }
-  }, [foundCharacters, setStopTimer, userTime]);
+    if (status) {
+      setNotificationSettings((draft) => {
+        draft.status = "found";
+        draft.message = "Correct!";
+        draft.show = true;
+      });
+    } else {
+      setNotificationSettings((draft) => {
+        draft.status = "notfound";
+        draft.message = "Not correct!, try again";
+        draft.show = true;
+      });
+    }
+  }
 
   async function imageClick(e) {
     setDimension((draft) => {
@@ -33,7 +51,7 @@ function GameScene() {
 
   return (
     <div>
-      {foundCharacters.map((character) => {
+      {Found.map((character) => {
         return (
           <Marker
             x={character.x}
@@ -44,19 +62,24 @@ function GameScene() {
           ></Marker>
         );
       })}
-
       <dropdownContext.Provider
         value={{
           x: dimension.x,
           y: dimension.y,
-          foundCharacters,
-          setFoundCharacters,
+          Found,
+          setFound,
+          onFoundChange,
         }}
       >
         <CharacterDropdown isOpen={open} />
+        <Notification
+          message={notficationSettings.message}
+          type={notficationSettings.status}
+          show={notficationSettings.show}
+          setShow={setNotificationSettings}
+        ></Notification>
       </dropdownContext.Provider>
       {win && <WinDialog></WinDialog>}
-
       <img src={bg1} onClick={imageClick} />
     </div>
   );

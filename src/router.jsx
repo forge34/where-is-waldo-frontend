@@ -1,4 +1,4 @@
-import { Outlet, createBrowserRouter } from "react-router-dom";
+import {  createBrowserRouter } from "react-router-dom";
 import Index from "./index.jsx";
 import GameScene from "./components/game-scene.jsx";
 

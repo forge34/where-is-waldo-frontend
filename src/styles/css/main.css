@@ -99,4 +99,23 @@ form {
   align-self: center;
 }
 
+.notfication {
+  padding: 1em;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  translate: -50% -50%;
+  color: white;
+}
+
+.notfication-notfound {
+  background-color: red;
+}
+
+.notfication-found {
+  background-color: green;
+}
+
 /*# sourceMappingURL=main.css.map */
