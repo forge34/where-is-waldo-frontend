@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { dropdownContext } from "../utils/character-dropdown-context";
 
 function CharacterDropDownItem({ name, imgSrc }) {
-  const { x, y, setFound, onFoundChange } = useContext(dropdownContext);
+  const { x, y, setFound, onCheck } = useContext(dropdownContext);
 
   async function handleClick(e) {
     e.stopPropagation();
     let res = await fetch(`${import.meta.env.VITE_API_URL}/check`, {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify({
         name: name,
         x: x,
@@ -22,7 +23,7 @@ function CharacterDropDownItem({ name, imgSrc }) {
     res = await res.json();
 
     if (res.found) {
-      onFoundChange(true);
+      onCheck(true);
       setFound((draft) => {
         if (!draft.includes(name)) {
           draft.push({
@@ -33,7 +34,7 @@ function CharacterDropDownItem({ name, imgSrc }) {
         }
       });
     } else if (!res.found) {
-      onFoundChange(false);
+      onCheck(false);
     }
 
     console.log(res);

@@ -14,18 +14,31 @@ function GameScene() {
   const [dimension, setDimension] = useImmer({ x: 0, y: 0 });
   const [Found, setFound] = useImmer([]);
   const [win, setWin] = useState(false);
-  const [setStopTimer] = useOutletContext();
+  const [, setStopTimer] = useOutletContext();
   const [notficationSettings, setNotificationSettings] = useImmer({
     status: "inital",
     message: "",
     show: false,
   });
 
-  function onFoundChange(status) {
+  useEffect(() => {
+    const onEnd = async () => {
+      let res = await fetch(`${import.meta.env.VITE_API_URL}/end`, {
+        credentials: "include",
+      });
+      res = await res.json();
+      console.log(res / 1000);
+    };
+
+    console.log(Found);
     if (Found.length >= 5) {
       setWin(true);
       setStopTimer(true);
+      onEnd();
     }
+  }, [Found, setStopTimer, setWin]);
+
+  function onCheck(status) {
     if (status) {
       setNotificationSettings((draft) => {
         draft.status = "found";
@@ -68,7 +81,7 @@ function GameScene() {
           y: dimension.y,
           Found,
           setFound,
-          onFoundChange,
+          onCheck,
         }}
       >
         <CharacterDropdown isOpen={open} />

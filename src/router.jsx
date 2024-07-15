@@ -1,4 +1,4 @@
-import {  createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Index from "./index.jsx";
 import GameScene from "./components/game-scene.jsx";
 
@@ -13,6 +13,14 @@ const router = createBrowserRouter([
       },
       {
         path: "game",
+        loader: () => {
+          return fetch(`${import.meta.env.VITE_API_URL}/start`, {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        },
         element: <GameScene></GameScene>,
       },
     ],
