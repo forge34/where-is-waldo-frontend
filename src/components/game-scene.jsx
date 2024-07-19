@@ -27,10 +27,8 @@ function GameScene() {
         credentials: "include",
       });
       res = await res.json();
-      console.log(res / 1000);
     };
 
-    console.log(Found);
     if (Found.length >= 5) {
       setWin(true);
       setStopTimer(true);
@@ -92,8 +90,8 @@ function GameScene() {
           setShow={setNotificationSettings}
         ></Notification>
       </dropdownContext.Provider>
-      {win && <WinDialog></WinDialog>}
       <img src={bg1} onClick={imageClick} />
+      {win && <WinDialog></WinDialog>}
     </div>
   );
 }
