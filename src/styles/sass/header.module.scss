@@ -1,12 +1,12 @@
 .container {
   display: flex;
-  padding: 0.5em;
+  padding: clamp(5px, 0.5em, 16px);
   border-width: 0 0 2px 0;
   border-style: solid;
-
+  max-height: fit-content;
   justify-content: space-between;
 
   p {
-    font-size: 2em;
+    font-size: calc(1vw + 0.8rem);
   }
 }
