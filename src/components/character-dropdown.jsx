@@ -33,12 +33,16 @@ const dropdownItems = [
 
 function CharacterDropdown({ isOpen }) {
   const animate = isOpen ? "slide" : "";
-  const { x, y } = useContext(dropdownContext);
+  const { dimension } = useContext(dropdownContext);
 
   return (
     <div
       className={"dropdown " + animate}
-      style={{ display: isOpen ? "block" : "none", top: y + 10, left: x + 15 }}
+      style={{
+        display: isOpen ? "block" : "none",
+        top: dimension.y + 30,
+        left: dimension.x + 20,
+      }}
     >
       <h1 className="dropdown-title">Select Character</h1>
       {dropdownItems?.map((item) => {
@@ -56,8 +60,6 @@ function CharacterDropdown({ isOpen }) {
 
 CharacterDropdown.propTypes = {
   isOpen: PropTypes.bool,
-  x: PropTypes.number,
-  y: PropTypes.number,
 };
 
 export default CharacterDropdown;

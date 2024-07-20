@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CharacterDropdown from "./character-dropdown";
 import bg1 from "../assets/bg2.jpg";
 import { useImmer } from "use-immer";
@@ -11,7 +11,12 @@ import Notification from "./notification";
 
 function GameScene() {
   const [open, setOpen] = useState(false);
-  const [dimension, setDimension] = useImmer({ x: 0, y: 0 });
+  const [dimension, setDimension] = useImmer({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+  });
   const [Found, setFound] = useImmer([]);
   const [win, setWin] = useState(false);
   const [, setStopTimer] = useOutletContext();
@@ -21,6 +26,8 @@ function GameScene() {
     show: false,
   });
 
+  const imgRef = useRef(null);
+
   useEffect(() => {
     const onEnd = async () => {
       let res = await fetch(`${import.meta.env.VITE_API_URL}/end`, {
@@ -28,7 +35,7 @@ function GameScene() {
       });
       res = await res.json();
     };
-
+    console.log(Found);
     if (Found.length >= 5) {
       setWin(true);
       setStopTimer(true);
@@ -55,7 +62,11 @@ function GameScene() {
   async function imageClick(e) {
     setDimension((draft) => {
       draft.x = e.pageX;
-      draft.y = e.pageY;
+      -e.target.offsetLeft;
+
+      draft.y = e.pageY - e.target.offsetTop;
+      draft.height = e.target.height;
+      draft.width = e.target.width;
     });
     setOpen(!open);
   }
@@ -66,7 +77,7 @@ function GameScene() {
         return (
           <Marker
             x={character.x}
-            y={character.y}
+            y={character.y + imgRef.current.offsetTop}
             key={character.name}
             width={32}
             height={32}
@@ -75,8 +86,7 @@ function GameScene() {
       })}
       <dropdownContext.Provider
         value={{
-          x: dimension.x,
-          y: dimension.y,
+          dimension,
           Found,
           setFound,
           onCheck,
@@ -90,7 +100,7 @@ function GameScene() {
           setShow={setNotificationSettings}
         ></Notification>
       </dropdownContext.Provider>
-      <img src={bg1} onClick={imageClick} />
+      <img ref={imgRef} src={bg1} onClick={imageClick} />
       {win && <WinDialog></WinDialog>}
     </div>
   );

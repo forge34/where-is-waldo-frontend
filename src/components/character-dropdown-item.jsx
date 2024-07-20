@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { dropdownContext } from "../utils/character-dropdown-context";
 
 function CharacterDropDownItem({ name, imgSrc }) {
-  const { x, y, setFound, onCheck } = useContext(dropdownContext);
+  const { dimension, setFound, onCheck } = useContext(dropdownContext);
 
   async function handleClick(e) {
     e.stopPropagation();
@@ -12,8 +12,10 @@ function CharacterDropDownItem({ name, imgSrc }) {
       credentials: "include",
       body: JSON.stringify({
         name: name,
-        x: x,
-        y: y,
+        x: dimension.x,
+        width: dimension.width,
+        height: dimension.height,
+        y: dimension.y,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +27,7 @@ function CharacterDropDownItem({ name, imgSrc }) {
     if (res.found) {
       onCheck(true);
       setFound((draft) => {
-        if (!draft.includes(name)) {
+        if (!draft.some((e) => e.name === name)) {
           draft.push({
             x: res.x,
             y: res.y,
@@ -37,7 +39,6 @@ function CharacterDropDownItem({ name, imgSrc }) {
       onCheck(false);
     }
 
-    console.log(res);
   }
 
   return (
