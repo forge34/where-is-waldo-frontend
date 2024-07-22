@@ -35,7 +35,7 @@ function GameScene() {
       });
       res = await res.json();
     };
-    console.log(Found);
+
     if (Found.length >= 5) {
       setWin(true);
       setStopTimer(true);

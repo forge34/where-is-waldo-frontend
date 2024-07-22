@@ -6,6 +6,21 @@ function WinDialog() {
   const dialogRef = useRef(null);
   async function handleClick(e) {
     e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(e.target).entries());
+
+    let res = await fetch(`${import.meta.env.VITE_API_URL}/save`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(data),
+      headers: new Headers({
+        "Content-type": "application/json",
+      }),
+    });
+
+    res = await res.json();
+
+    dialogRef.current.close();
   }
 
   useEffect(() => {
@@ -21,7 +36,7 @@ function WinDialog() {
           name="playername"
           id="playername"
           onChange={(e) => {
-            setValue(e.value);
+            setValue(e.target.value);
           }}
           autoFocus={true}
         />
