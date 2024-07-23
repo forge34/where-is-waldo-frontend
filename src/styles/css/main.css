@@ -8,10 +8,12 @@
   margin: 0;
   padding: 0;
   font: inherit;
+  color: #eaecf4;
 }
 
 body {
   min-height: 100vh;
+  background-color: #090d19;
 }
 
 img,
@@ -135,24 +137,41 @@ form {
 
 .game-card {
   width: max(400px, 25%);
+  margin-top: 4em;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-content: center;
+  border-radius: 12px;
+  background-color: #1c2647;
 }
 
 .card-bottom {
   font-size: 1.3rem;
   padding: 0.3em 0.7em;
-  border-radius: 12px;
   border-style: none;
-  background-color: white;
-  align-self: flex-start;
+  margin: 1em 0;
+  border-radius: 12px;
+  color: #030407;
+  background-color: #95a3d1;
+  align-self: center;
+  transition: all 0.3s ease-in 0.05s;
+}
+.card-bottom:hover {
+  opacity: 70%;
+  transform: scale(1.06);
 }
 
 .card-image {
   height: 200px;
   overflow: clip;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
+}
+.card-image img {
+  transition: all 0.3s ease-in 0s;
+}
+.card-image img:hover {
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=main.css.map */
