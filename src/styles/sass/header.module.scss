@@ -1,7 +1,7 @@
 @use "variables";
 
 .container {
-  position: fixed;
+  position: sticky;
   width: 100%;
   background-color: variables.$bg-color;
   display: flex;
@@ -13,6 +13,13 @@
 
   p {
     font-size: calc(0.5vw + 0.8rem);
+  }
+  a {
+    text-decoration: none;
+
+    &:visited {
+      color: inherit;
+    }
   }
 }
 

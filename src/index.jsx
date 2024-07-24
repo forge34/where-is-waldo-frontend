@@ -10,7 +10,7 @@ function Index({}) {
   const localtion = useLocation();
   const navigate = useNavigate();
   return (
-    <div>
+    <>
       <Header>
         <Timer setExternalTime={setUserTime} stopTimer={stopTimer}></Timer>
       </Header>
@@ -34,7 +34,7 @@ function Index({}) {
       ) : (
         <Outlet context={[userTime, setStopTimer]}></Outlet>
       )}
-    </div>
+    </>
   );
 }
 

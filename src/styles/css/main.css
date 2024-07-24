@@ -36,6 +36,7 @@ form {
   overflow: hidden;
   max-height: 0;
   transition: max-height 1s;
+  color: black;
 }
 .dropdown h1 {
   padding: 0.5em;
@@ -172,6 +173,35 @@ form {
 }
 .card-image img:hover {
   transform: scale(1.1);
+}
+
+.table {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 4em;
+}
+.table table {
+  min-width: min(400px, 50%);
+  border: 1px solid #32447e;
+  border-collapse: collapse;
+  font-size: 1.1rem;
+}
+.table table thead tr {
+  text-align: left;
+  background-color: #32447e;
+  font-weight: bold;
+}
+.table table th,
+.table table td {
+  padding: 0.5em;
+}
+.table table tbody tr {
+  border-bottom: 1px solid #6077c6;
+}
+.table table tbody tr:nth-child(even) {
+  background-color: #6075ba;
 }
 
 /*# sourceMappingURL=main.css.map */

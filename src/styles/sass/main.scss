@@ -15,7 +15,7 @@
 
 body {
   min-height: 100vh;
-  background-color: darken($color: variables.$accent-color, $amount: 51);
+  background-color: darken($color: variables.$accent, $amount: 51);
 }
 
 img,
@@ -38,6 +38,7 @@ form {
   overflow: hidden;
   max-height: 0;
   transition: max-height 1s;
+  color: black;
   h1 {
     padding: 0.5em;
   }
@@ -188,6 +189,38 @@ form {
 
     &:hover {
       transform: scale(1.1);
+    }
+  }
+}
+
+.table {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 4em;
+  table {
+    min-width: min(400px, 50%);
+    border: 1px solid variables.$secondary-color;
+    border-collapse: collapse;
+    font-size: 1.1rem;
+
+    thead tr {
+      text-align: left;
+      background-color: variables.$secondary-color;
+      font-weight: bold;
+    }
+
+    th,
+    td {
+      padding: 0.5em;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid variables.$accent;
+    }
+    tbody tr:nth-child(even) {
+      background-color: darken($color: variables.$primary-color, $amount: 15);
     }
   }
 }

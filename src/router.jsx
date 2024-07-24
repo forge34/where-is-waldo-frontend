@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Index from "./index.jsx";
 import GameScene from "./components/game-scene.jsx";
+import Leaderboard from "./components/leaderboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -9,7 +10,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "leaderboard",
-        element: <h1>Coming soon</h1>,
+        loader: () => {
+          return fetch(`${import.meta.env.VITE_API_URL}/leaderboard`, {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        },
+        element: <Leaderboard></Leaderboard>,
       },
       {
         path: "game",

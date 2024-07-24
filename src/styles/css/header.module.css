@@ -1,5 +1,5 @@
 .container {
-  position: fixed;
+  position: sticky;
   width: 100%;
   background-color: #030407;
   display: flex;
@@ -11,6 +11,12 @@
 }
 .container p {
   font-size: calc(0.5vw + 0.8rem);
+}
+.container a {
+  text-decoration: none;
+}
+.container a:visited {
+  color: inherit;
 }
 
 .leaderboard {
