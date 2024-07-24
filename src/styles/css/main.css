@@ -27,6 +27,9 @@ video {
 form {
   all: unset;
 }
+form * {
+  color: black;
+}
 
 .dropdown {
   visibility: hidden;
@@ -79,27 +82,30 @@ form {
   flex-direction: column;
   justify-content: space-between;
   font-size: 1.8em;
-  background-color: white;
-  border-radius: 12px;
+  background-color: #090d19;
   padding: 1em;
 }
 #win-form > * {
   margin: 0.25em 0;
+}
+#win-form label {
+  color: #eaecf4;
 }
 #win-form input {
   border-radius: 10px;
   padding: 0.2em;
 }
 #win-form button {
-  background-color: white;
+  background-color: #32447e;
   padding: 0.4em 0.7em;
   font-size: 0.7em;
   border-radius: 12px;
   align-self: center;
+  border-style: none;
   transition: background-color 0.3s ease-in 0.05s;
 }
 #win-form button:hover {
-  background-color: green;
+  background-color: #95a3d1;
 }
 
 .notfication {
@@ -126,6 +132,8 @@ form {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-style: none;
+  border-radius: 12px;
 }
 
 .index {

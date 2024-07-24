@@ -28,6 +28,9 @@ video {
 
 form {
   all: unset;
+  * {
+    color: black;
+  }
 }
 
 .dropdown {
@@ -89,12 +92,14 @@ form {
   justify-content: space-between;
 
   font-size: 1.8em;
-  background-color: white;
-  border-radius: 12px;
+  background-color: variables.$darker-accent;
   padding: 1em;
 
   & > * {
     margin: 0.25em 0;
+  }
+  label {
+    color: variables.$text-color;
   }
 
   input {
@@ -103,15 +108,16 @@ form {
   }
 
   button {
-    background-color: white;
+    background-color: variables.$secondary-color;
     padding: 0.4em 0.7em;
     font-size: 0.7em;
     border-radius: 12px;
     align-self: center;
+    border-style: none;
 
     transition: background-color 0.3s ease-in 0.05s;
     &:hover {
-      background-color: green;
+      background-color: variables.$primary-color;
     }
   }
 }
@@ -141,6 +147,8 @@ form {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-style: none;
+  border-radius: 12px;
 }
 
 .index {
