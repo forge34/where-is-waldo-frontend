@@ -12,7 +12,11 @@ function Index({}) {
   return (
     <>
       <Header>
-        <Timer setExternalTime={setUserTime} stopTimer={stopTimer}></Timer>
+        <Timer
+          setExternalTime={setUserTime}
+          setStop={setStopTimer}
+          stopTimer={stopTimer}
+        ></Timer>
       </Header>
       {localtion.pathname === "/" ? (
         <div className="index">

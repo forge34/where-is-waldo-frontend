@@ -3,3 +3,7 @@ $text-color: #eaecf4;
 $primary-color: #95a3d1;
 $secondary-color: #32447e;
 $accent: #6077c6;
+$darker-accent: darken(
+  $color: $accent,
+  $amount: 51,
+);

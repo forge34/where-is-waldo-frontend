@@ -31,15 +31,15 @@ form {
 .dropdown {
   visibility: hidden;
   position: absolute;
-  background-color: white;
+  background-color: #090d19;
   border-radius: 8px;
   overflow: hidden;
   max-height: 0;
   transition: max-height 1s;
-  color: black;
 }
 .dropdown h1 {
   padding: 0.5em;
+  font-weight: bold;
 }
 
 .dropdown.slide {
@@ -67,7 +67,7 @@ form {
   font-size: 1.4rem;
 }
 .dropdown-item:hover {
-  background-color: green;
+  background-color: #32447e;
 }
 
 .dropdown-title {
