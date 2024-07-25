@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 import Header from "./components/header";
-import Timer from "./components/timer";
+import Stopwatch from "./components/stopwatch";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import bg1 from "./assets/bg2.jpg";
 
 function Index({}) {
-  const [userTime, setUserTime] = useState(0);
-  const [stopTimer, setStopTimer] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
   const localtion = useLocation();
   const navigate = useNavigate();
+
   return (
     <>
       <Header>
-        <Timer
-          setExternalTime={setUserTime}
-          setStop={setStopTimer}
-          stopTimer={stopTimer}
-        ></Timer>
+        <Stopwatch running={isRunning} ></Stopwatch>
       </Header>
       {localtion.pathname === "/" ? (
         <div className="index">
@@ -27,7 +23,6 @@ function Index({}) {
             <button
               className="card-bottom"
               onClick={() => {
-                setStopTimer(false);
                 navigate("/game");
               }}
             >
@@ -36,7 +31,7 @@ function Index({}) {
           </div>
         </div>
       ) : (
-        <Outlet context={[userTime, setStopTimer]}></Outlet>
+        <Outlet context={{ setIsRunning }}></Outlet>
       )}
     </>
   );

@@ -19,7 +19,6 @@ function GameScene() {
   });
   const [Found, setFound] = useImmer([]);
   const [win, setWin] = useState(false);
-  const [, setStopTimer] = useOutletContext();
   const [notficationSettings, setNotificationSettings] = useImmer({
     status: "inital",
     message: "",
@@ -27,6 +26,11 @@ function GameScene() {
   });
 
   const imgRef = useRef(null);
+  const { setIsRunning } = useOutletContext();
+
+  useEffect(() => {
+    setIsRunning(true);
+  }, [setIsRunning]);
 
   useEffect(() => {
     const onEnd = async () => {
@@ -38,10 +42,10 @@ function GameScene() {
 
     if (Found.length >= 5) {
       setWin(true);
-      setStopTimer(true);
+      setIsRunning(false);
       onEnd();
     }
-  }, [Found, setStopTimer, setWin]);
+  }, [Found, setWin, setIsRunning]);
 
   function onCheck(status) {
     if (status) {
