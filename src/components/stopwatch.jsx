@@ -20,8 +20,8 @@ function Stopwatch({ running }) {
   }, [running, location.pathname]);
 
   return (
-    <div>
-      <p>{adjustTimer(time)}</p>
+    <div className="stopwatch">
+      <p className="stopwatch-text">{adjustTimer(time)}</p>
     </div>
   );
 }

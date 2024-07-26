@@ -1,5 +1,11 @@
 @use "variables";
 
+@font-face {
+  font-family: "Digital";
+  src: url("/public/digital_7/digital-7.ttf"),
+    url("/public/digital_7/digital-7\ \(mono\).ttf");
+}
+
 *,
 *::before,
 *::after {
@@ -232,4 +238,16 @@ form {
       background-color: darken($color: variables.$primary-color, $amount: 15);
     }
   }
+}
+
+.stopwatch {
+  background-color: variables.$secondary-color;
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+}
+
+.stopwatch-text {
+  font-family: "Digital";
+  font-size: 2rem;
+  letter-spacing: 0.3rem;
 }

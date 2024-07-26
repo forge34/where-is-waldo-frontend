@@ -1,21 +1,24 @@
-.container {
+.header {
   position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: #030407;
   display: flex;
   padding: clamp(7px, 0.8em, 16px);
-  border-width: 0 0 0.5px 0;
-  border-style: solid;
   max-height: fit-content;
-  justify-content: space-between;
+  align-content: flex-start;
 }
-.container p {
-  font-size: calc(0.5vw + 0.8rem);
+.header :not(:last-child):not(:first-child) {
+  margin-right: auto;
 }
-.container a {
+.header p:not(.stopwatch-text) {
+  font-size: max(1rem, 0.8vw + 0.8rem);
+}
+.header a {
   text-decoration: none;
 }
-.container a:visited {
+.header a:visited {
   color: inherit;
 }
 
@@ -32,6 +35,7 @@
 .logo {
   width: 32px;
   height: 32px;
+  margin-right: 0.4em;
 }
 
-/*# sourceMappingURL=header.module.css.map */
+/*# sourceMappingURL=header.css.map */

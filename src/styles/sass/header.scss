@@ -1,19 +1,24 @@
 @use "variables";
 
-.container {
+.header {
   position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: variables.$bg-color;
   display: flex;
   padding: clamp(7px, 0.8em, 16px);
-  border-width: 0 0 0.5px 0;
-  border-style: solid;
   max-height: fit-content;
-  justify-content: space-between;
+  align-content: flex-start;
 
-  p {
-    font-size: calc(0.5vw + 0.8rem);
+  :not(:last-child):not(:first-child) {
+    margin-right: auto;
   }
+
+  p:not(.stopwatch-text) {
+    font-size: max(1rem, calc(0.8vw + 0.8rem));
+  }
+
   a {
     text-decoration: none;
 
@@ -38,4 +43,5 @@
 .logo {
   width: 32px;
   height: 32px;
+  margin-right: 0.4em;
 }
