@@ -36,22 +36,28 @@ form * {
 }
 
 .dropdown {
-  visibility: hidden;
   position: absolute;
   background-color: #090d19;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 0;
   transition: max-height 1s;
+  width: max-content;
+}
+.dropdown h3,
+.dropdown img {
+  display: inline-block;
 }
 .dropdown h1 {
   padding: 0.5em;
   font-weight: bold;
 }
 
-.dropdown.slide {
-  visibility: visible;
-  max-height: 400px;
+.dropdown.flip {
+  transform: translateX(-110%) scaleX(-1);
+}
+.dropdown.flip h1,
+.dropdown.flip h3 {
+  transform: scaleX(-1);
 }
 
 .checkmark {

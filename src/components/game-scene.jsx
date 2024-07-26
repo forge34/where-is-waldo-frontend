@@ -35,6 +35,7 @@ function GameScene() {
   useEffect(() => {
     const onEnd = async () => {
       let res = await fetch(`${import.meta.env.VITE_API_URL}/end`, {
+        mode: "cors",
         credentials: "include",
       });
       res = await res.json();

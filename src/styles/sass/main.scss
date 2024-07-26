@@ -40,13 +40,17 @@ form {
 }
 
 .dropdown {
-  visibility: hidden;
   position: absolute;
   background-color: variables.$darker-accent;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 0;
   transition: max-height 1s;
+  width: max-content;
+
+  h3,
+  img {
+    display: inline-block;
+  }
 
   h1 {
     padding: 0.5em;
@@ -54,9 +58,13 @@ form {
   }
 }
 
-.dropdown.slide {
-  visibility: visible;
-  max-height: 400px;
+.dropdown.flip {
+  transform: translateX(-110%) scaleX(-1);
+
+  h1,
+  h3 {
+    transform: scaleX(-1);
+  }
 }
 
 .checkmark {

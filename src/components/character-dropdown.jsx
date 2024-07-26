@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import leonardo from "../assets/ninge turtle.png";
 import CharacterDropdownItem from "./character-dropdown-item";
@@ -32,19 +32,18 @@ const dropdownItems = [
 ];
 
 function CharacterDropdown({ isOpen }) {
-  const animate = isOpen ? "slide" : "";
   const { dimension } = useContext(dropdownContext);
 
   return (
     <div
-      className={"dropdown " + animate}
+      className={"dropdown flip"}
       style={{
         display: isOpen ? "block" : "none",
-        top: dimension.y + 30,
-        left: dimension.x + 20,
+        top: dimension.y + 70,
+        left: dimension.x + 15,
       }}
     >
-      <h1 className="dropdown-title">Select Character</h1>
+      <h1 className="dropdown-title ">Select Character</h1>
       {dropdownItems?.map((item) => {
         return (
           <CharacterDropdownItem

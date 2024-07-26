@@ -13,6 +13,7 @@ const router = createBrowserRouter([
         loader: () => {
           return fetch(`${import.meta.env.VITE_API_URL}/leaderboard`, {
             credentials: "include",
+            mode: "cors",
             headers: {
               "Content-Type": "application/json",
             },

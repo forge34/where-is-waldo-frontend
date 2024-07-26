@@ -9,6 +9,7 @@ function CharacterDropDownItem({ name, imgSrc }) {
     e.stopPropagation();
     let res = await fetch(`${import.meta.env.VITE_API_URL}/check`, {
       method: "POST",
+      mode: "cors",
       credentials: "include",
       body: JSON.stringify({
         name: name,
@@ -38,12 +39,11 @@ function CharacterDropDownItem({ name, imgSrc }) {
     } else if (!res.found) {
       onCheck(false);
     }
-
   }
 
   return (
     <>
-      <div className="dropdown-item" onClick={handleClick}>
+      <div className="dropdown-item " onClick={handleClick}>
         <img width={"48px"} height={"48px"} src={imgSrc} />
         <h3>{name}</h3>
       </div>
