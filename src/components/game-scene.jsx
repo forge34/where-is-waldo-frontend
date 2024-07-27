@@ -10,7 +10,6 @@ import { useOutletContext } from "react-router-dom";
 import Notification from "./notification";
 
 function GameScene() {
-  const [open, setOpen] = useState(false);
   const [dimension, setDimension] = useImmer({
     x: 0,
     y: 0,
@@ -19,14 +18,15 @@ function GameScene() {
   });
   const [Found, setFound] = useImmer([]);
   const [win, setWin] = useState(false);
+
+  const imgRef = useRef(null);
+  const { setIsRunning } = useOutletContext();
+  const [openDropdown, setOpenDropdown] = useState(false);
   const [notficationSettings, setNotificationSettings] = useImmer({
     status: "inital",
     message: "",
     show: false,
   });
-
-  const imgRef = useRef(null);
-  const { setIsRunning } = useOutletContext();
 
   useEffect(() => {
     setIsRunning(true);
@@ -73,7 +73,7 @@ function GameScene() {
       draft.height = e.target.height;
       draft.width = e.target.width;
     });
-    setOpen(!open);
+    setOpenDropdown(!openDropdown);
   }
 
   return (
@@ -97,7 +97,7 @@ function GameScene() {
           onCheck,
         }}
       >
-        <CharacterDropdown isOpen={open} />
+        {openDropdown && <CharacterDropdown img={imgRef} />}
         <Notification
           message={notficationSettings.message}
           type={notficationSettings.status}
